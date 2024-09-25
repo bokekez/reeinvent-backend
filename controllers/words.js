@@ -1,10 +1,20 @@
-const { getAllWords, findWord, insertWord, doSynonymsExist, editWord, deleteWord } = require('../services/wordsService');
+const { getAllWords, findWord, insertWord, doSynonymsExist, editWord, deleteWord, findWordBySubstring } = require('../services/wordsService');
 
-exports.getAllWords = (req, res) => {
-  res.json(getAllWords());
+const getWords = (req, res) => {
+  const { search } = req.query; 
+
+  if(!search) return res.json(getAllWords());
+
+  if(search.length < 2) return res.status(404).json({ message: `Search word is too short.` });
+
+  const filteredWords = findWordBySubstring(search);
+  if (filteredWords.length) {
+      return res.json(filteredWords);
+  } 
+  return res.status(404).json({ message: `No words found containing '${search}'.` });
 };
 
-exports.getWordByName = (req, res) => {
+const getWordByName = (req, res) => {
   const word = req.params.word.toLowerCase(); 
   const foundWord = findWord(word);
 
@@ -15,11 +25,11 @@ exports.getWordByName = (req, res) => {
   res.status(404).json({ message: `Word '${req.params.word}' not found` });
 };
 
-exports.addWord = (req, res) => {
+const addWord = (req, res) => {
   const { word, synonym } = req.body;
 
-  if (!word || !synonym || !Array.isArray(synonym)) {
-    return res.status(400).json({ message: 'Invalid input: word and synonyms are required.' });
+  if (!word) {
+    return res.status(400).json({ message: 'Invalid input: word is required.' });
   }
 
   if (findWord(word)) {
@@ -27,15 +37,15 @@ exports.addWord = (req, res) => {
   }
 
   const nonExistingSynonyms = doSynonymsExist(synonym);
-  if (nonExistingSynonyms.length) {
-    return res.status(400).json(`Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`);
+  if (synonym.length && nonExistingSynonyms.length) {
+    return res.status(400).json({ message: `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`});
   }
 
   const newWord = insertWord(word, synonym);
   res.status(201).json(newWord);
 };
 
-exports.updateWord = (req, res) => {
+const updateWord = (req, res) => {
   const { word } = req.params;
   const { newWord, newSynonyms } = req.body;
 
@@ -52,7 +62,7 @@ exports.updateWord = (req, res) => {
   res.status(200).json({ message: `${word} updated to ${newWord}`, newWord, newSynonyms });
 };
 
-exports.deleteWord = (req, res) => {
+const removeWord = (req, res) => {
   const { word } = req.params;
   const wordDeleted = deleteWord(word);
 
@@ -61,4 +71,12 @@ exports.deleteWord = (req, res) => {
   }
 
   res.status(200).json({ message: `Word '${word}' deleted successfully.` });
+};
+
+module.exports = {
+  getWords,
+  getWordByName,
+  addWord,
+  updateWord,
+  removeWord
 };
