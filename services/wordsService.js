@@ -7,26 +7,25 @@ const getAllWords = () => {
 
 const findWord = (wordSearch) => {
   const wordsModel = getActiveModel()
-  console.log(wordsModel)
   if(wordsModel.activeModel === 'basic') {
-    return wordsModel.words.find(element => element.word.toLowerCase() === wordSearch.toLowerCase());
+    return wordsModel.words.find(element => checkWords(element.word, wordSearch));
   }
   const wordAndSynonyms = {
-    word: wordsModel.words.find(element => element.word.toLowerCase() === wordSearch.toLowerCase()),
+    word: wordsModel.words.find(element => checkWords(element.word, wordSearch)),
     transitive: getTraslativeSynonyms(wordsModel.words, wordSearch)
   }
-  return wordAndSynonyms
+  return wordAndSynonyms.word ? wordAndSynonyms : null
 };
 
 const doSynonymsExist = (synonyms) => {
-  const words = getActiveModel().words
+  const words = getAllWords()
   return synonyms.filter(synonym => 
-    !words.find(word => word.word.toLowerCase() === synonym.toLowerCase())
+    !words.find(word => checkWords(word.word, synonym))
   );
 };
 
 const insertWord = (word, synonyms) => {
-  const words = getActiveModel().words
+  const words = getAllWords()
   const newWord = {
     id: words.length + 1,  
     word: word,
@@ -38,14 +37,14 @@ const insertWord = (word, synonyms) => {
 }
 
 const deleteWord = (word) => {
-  const words = getActiveModel().words
-  const wordIndex = words.findIndex(element => element.word.toLowerCase() === word.toLowerCase());
+  const words = getAllWords()
+  const wordIndex = words.findIndex(element => checkWords(element.word, word));
 
   if (wordIndex === -1) {
     return false
   }
 
-  words.splice(wordIndex, 1)[0];
+  words.splice(wordIndex, 1);
   words.forEach(element => {
     element.synonym = element.synonym.filter(synonym => synonym.toLowerCase() !== word.toLowerCase());
   });
@@ -53,16 +52,16 @@ const deleteWord = (word) => {
 }
 
 function editWord(word, newWord, newSynonyms) {
-  const words = getActiveModel().words
-  const wordIndex = words.findIndex(element => element.word.toLowerCase() === word.toLowerCase());
+  const words = getAllWords()
+  const wordIndex = words.findIndex(element => checkWords(element.word, word));
 
   if (wordIndex === -1) {
     return { success: false, message: `Word '${word}' not found.` };
   }
 
-  const duplicateCheck = words.find(element => element.word.toLowerCase() === newWord.toLowerCase());
+  const duplicateCheck = words.find(element => checkWords(element.word, newWord));
   if (duplicateCheck) {
-    const synonymCheck = newSynonyms.filter(newSyn => duplicateCheck.synonym.some(existingSyn => existingSyn.toLowerCase() === newSyn.toLowerCase()));
+    const synonymCheck = newSynonyms.filter(newSyn => duplicateCheck.synonym.some(existingSyn => checkWords(existingSyn, newSyn)));
     if(synonymCheck.length === newSynonyms.length) {
       return { success: false, message: `Word '${newWord}' already exists with the same synonyms.` };
     }
@@ -77,7 +76,7 @@ function editWord(word, newWord, newSynonyms) {
 
   words.forEach(element => {
     if (element.synonym.includes(word)) {
-      element.synonym = element.synonym.map(syn => syn.toLowerCase() === word.toLowerCase() ? newWord : syn);
+      element.synonym = element.synonym.map(syn => checkWords(syn, word) ? newWord : syn);
     }
   });
 
@@ -87,11 +86,18 @@ function editWord(word, newWord, newSynonyms) {
 const getTraslativeSynonyms = (words, wordSearch) => {
   const translative = []
   words.forEach(word => {
-    if(word.synonym.some(syn => syn.toLowerCase() === wordSearch.toLowerCase())){
-      translative.push(word.synonym.filter(tran => tran.toLowerCase() !== wordSearch.toLowerCase()))
+    if(word.synonym.some(syn => checkWords(syn, wordSearch))){
+      const findTranslatives = word.synonym.filter(tran => tran.toLowerCase() !== wordSearch.toLowerCase())
+      if(!findTranslatives.length) return
+      translative.push(findTranslatives)
   }
   })
   return translative
+}
+
+const checkWords = (word, wordSearch) => {
+  if(word.toLowerCase() === wordSearch.toLowerCase()) return true
+  return false
 }
 
 module.exports = {

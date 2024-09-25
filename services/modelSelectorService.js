@@ -1,27 +1,27 @@
 const wordsBasic = require('../models/wordsBasic');
 const wordsTransitive = require('../models/wordsTransitive');
 
+const modelMap = {
+  basic: wordsBasic,
+  transitive: wordsTransitive
+};
+
 const activeModel = {
   activeModel: 'basic',
-  words: wordsBasic
-}
-
-console.log('test', activeModel)
+  words: modelMap['basic']
+};
 
 function getActiveModel() {
   return activeModel;
 }
 
 function selectModel(modelName) {
-  if (modelName === 'basic') {
-    activeModel.activeModel = 'basic'
-    activeModel.words = wordsBasic
-    return activeModel
-  } else if (modelName === 'transitive') {
-    activeModel.activeModel = 'transitive'
-    activeModel.words = wordsTransitive
-    return activeModel
-  } 
+  const selectedModel = modelMap[modelName];
+  if (selectedModel) {
+    activeModel.activeModel = modelName;
+    activeModel.words = selectedModel;
+    return activeModel;
+  }
   throw new Error('Invalid model name. Use "basic" or "transitive".');
 }
 
