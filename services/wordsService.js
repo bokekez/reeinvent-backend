@@ -59,7 +59,7 @@ function editWord(word, newWord, newSynonyms) {
     return { success: false, message: `Word '${word}' not found.` };
   }
 
-  const duplicateCheck = words.find(element => checkWords(element.word, newWord));
+  const duplicateCheck = findWord(newWord);
   if (duplicateCheck) {
     const synonymCheck = newSynonyms.filter(newSyn => duplicateCheck.synonym.some(existingSyn => checkWords(existingSyn, newSyn)));
     if(synonymCheck.length === newSynonyms.length) {
@@ -95,6 +95,12 @@ const getTraslativeSynonyms = (words, wordSearch) => {
   return translative
 }
 
+function findWordBySubstring(substring) {
+  const words = getAllWords()
+  const lowerCaseSubstr = substring.toLowerCase();
+  return words.filter(wordObj => wordObj.word.toLowerCase().includes(lowerCaseSubstr));
+}
+
 const checkWords = (word, wordSearch) => {
   if(word.toLowerCase() === wordSearch.toLowerCase()) return true
   return false
@@ -106,5 +112,6 @@ module.exports = {
   insertWord,
   doSynonymsExist,
   editWord,
-  deleteWord
+  deleteWord,
+  findWordBySubstring
 };
