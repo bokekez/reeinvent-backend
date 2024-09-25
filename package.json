@@ -1,0 +1,6 @@
+{
+  "scripts": {},
+  "dependencies": {
+    "react-router-dom": "^6.26.2"
+  }
+}
