@@ -12,7 +12,7 @@ const findWord = (wordSearch) => {
   }
   const word = wordsModel.words.find(element => checkWords(element.word, wordSearch))
   const transitive = getTraslativeSynonyms(wordsModel.words, wordSearch)
-  word.transitive = transitive
+  word.transitive = transitive || ''
   return word
 };
 
