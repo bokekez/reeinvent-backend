@@ -12,7 +12,8 @@ const findWord = (wordSearch) => {
   }
   const word = wordsModel.words.find(element => checkWords(element.word, wordSearch))
   const transitive = getTraslativeSynonyms(wordsModel.words, wordSearch)
-  word.transitive = transitive || ''
+  if(!word) return;
+  word.transitive = transitive 
   return word
 };
 
@@ -24,15 +25,23 @@ const doSynonymsExist = (synonyms) => {
 };
 
 const insertWord = (word, synonyms) => {
-  const words = getAllWords()
+  const wordsModel = getActiveModel()
   const newWord = {
-    id: words.length + 1,  
+    id: wordsModel.words.length + 1,  
     word: word,
     synonym: synonyms
   };
 
-  words.push(newWord);
+  wordsModel.words.push(newWord);
+  if(wordsModel.activeModel === 'basic') addSyonoyms(word, synonyms, wordsModel.words)
   return newWord;
+}
+
+const addSyonoyms = (word, synonyms, words) => {
+  synonyms.forEach(syn => {
+    const updateIndex = words.findIndex(element => checkWords(element.word, syn));
+    words[updateIndex].synonym.push(word)
+  })
 }
 
 const deleteWord = (word) => {
@@ -40,7 +49,7 @@ const deleteWord = (word) => {
   const wordIndex = words.findIndex(element => checkWords(element.word, word));
 
   if (wordIndex === -1) {
-    return false
+    return falses
   }
 
   words.splice(wordIndex, 1);
