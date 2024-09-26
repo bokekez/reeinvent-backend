@@ -10,11 +10,10 @@ const findWord = (wordSearch) => {
   if(wordsModel.activeModel === 'basic') {
     return wordsModel.words.find(element => checkWords(element.word, wordSearch));
   }
-  const wordAndSynonyms = {
-    word: wordsModel.words.find(element => checkWords(element.word, wordSearch)),
-    transitive: getTraslativeSynonyms(wordsModel.words, wordSearch)
-  }
-  return wordAndSynonyms.word ? wordAndSynonyms : null
+  const word = wordsModel.words.find(element => checkWords(element.word, wordSearch))
+  const transitive = getTraslativeSynonyms(wordsModel.words, wordSearch)
+  word.transitive = transitive
+  return word
 };
 
 const doSynonymsExist = (synonyms) => {
