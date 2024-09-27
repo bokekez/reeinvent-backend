@@ -79,14 +79,14 @@ function editWord(word, newWord, newSynonyms) {
   const synonymWordCheck = doSynonymsExist(newSynonyms)
   if(synonymWordCheck.length) return { success: false, message: `Synonyms must exist as words, ${synonymWordCheck} are not words!`};
 
-  if(duplicateCheck.synonym.length > newSynonyms.length){
+  if(words[wordIndex].synonym > newSynonyms.length){
     const wordToUpdate = duplicateCheck.synonym.filter(syn => !newSynonyms.includes(syn))
     words.forEach(element => { if(wordToUpdate.includes(element.word)){
       element.synonym = element.synonym.filter(synUpd => synUpd !== newWord)
     }})
   }
 
-  if(duplicateCheck.synonym.length < newSynonyms.length){
+  if(words[wordIndex].synonym < newSynonyms.length){
     addSyonoyms(newWord, newSynonyms, words)
   }
 
