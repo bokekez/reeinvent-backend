@@ -40,7 +40,8 @@ const insertWord = (word, synonyms) => {
 const addSyonoyms = (word, synonyms, words) => {
   synonyms.forEach(syn => {
     const updateIndex = words.findIndex(element => checkWords(element.word, syn));
-    words[updateIndex].synonym.push(word)
+    if(words[updateIndex].synonym.includes(word)) return;
+    words[updateIndex].synonym.push(word);
   })
 }
 
@@ -49,7 +50,7 @@ const deleteWord = (word) => {
   const wordIndex = words.findIndex(element => checkWords(element.word, word));
 
   if (wordIndex === -1) {
-    return falses
+    return false
   }
 
   words.splice(wordIndex, 1);
@@ -70,15 +71,25 @@ function editWord(word, newWord, newSynonyms) {
   const duplicateCheck = findWord(newWord);
   if (duplicateCheck) {
     const synonymCheck = newSynonyms.filter(newSyn => duplicateCheck.synonym.some(existingSyn => checkWords(existingSyn, newSyn)));
-    if(synonymCheck.length === newSynonyms.length) {
+    if(duplicateCheck.synonym.length === newSynonyms.length && synonymCheck.length === newSynonyms.length) {
       return { success: false, message: `Word '${newWord}' already exists with the same synonyms.` };
     }
   }
 
   const synonymWordCheck = doSynonymsExist(newSynonyms)
-
   if(synonymWordCheck.length) return { success: false, message: `Synonyms must exist as words, ${synonymWordCheck} are not words!`};
- 
+
+  if(duplicateCheck.synonym.length > newSynonyms.length){
+    const wordToUpdate = duplicateCheck.synonym.filter(syn => !newSynonyms.includes(syn))
+    words.forEach(element => { if(wordToUpdate.includes(element.word)){
+      element.synonym = element.synonym.filter(synUpd => synUpd !== newWord)
+    }})
+  }
+
+  if(duplicateCheck.synonym.length < newSynonyms.length){
+    addSyonoyms(newWord, newSynonyms, words)
+  }
+
   words[wordIndex].word = newWord;
   words[wordIndex].synonym = newSynonyms;
 
