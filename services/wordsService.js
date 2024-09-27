@@ -33,7 +33,7 @@ const insertWord = (word, synonyms) => {
   };
 
   wordsModel.words.push(newWord);
-  if(wordsModel.activeModel === 'basic') addSyonoyms(word, synonyms, wordsModel.words)
+  addSyonoyms(word, synonyms, wordsModel.words)
   return newWord;
 }
 
