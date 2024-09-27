@@ -13,7 +13,7 @@ const findWord = (wordSearch) => {
   const word = wordsModel.words.find(element => checkWords(element.word, wordSearch))
   const transitive = getTraslativeSynonyms(wordsModel.words, wordSearch)
   if(!word) return;
-  word.transitive = transitive 
+  word.transitive = transitive.filter(transSyn => !word.synonym.includes(transSyn))
   return word
 };
 
@@ -111,7 +111,7 @@ const getTraslativeSynonyms = (words, wordSearch) => {
       translative.push(findTranslatives)
   }
   })
-  return translative
+  return translative.flat()
 }
 
 function findWordBySubstring(substring) {
