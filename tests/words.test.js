@@ -11,6 +11,42 @@ jest.mock('../controllers/words');
 
 describe('Words API', () => {
 
+  describe('GET /words', () => {
+    it('should return a list of words with status 200', async () => {
+      const mockWords = [{ word: 'apple', synonyms: ['fruit', 'food'] }, { word: 'banana', synonyms: ['fruit', 'yellow'] }];
+      wordsController.getWords.mockImplementation((req, res) => {
+        res.status(200).json(mockWords);
+      });
+  
+      const response = await request(app).get('/words');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(mockWords);
+    });
+  
+    it('should return an empty array if there are no words', async () => {
+      wordsController.getWords.mockImplementation((req, res) => {
+        res.status(200).json([]);
+      });
+
+      const response = await request(app).get('/words');
+  
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual([]); 
+    });
+  
+    it('should return 500 if there is a server error', async () => {
+      wordsController.getWords.mockImplementation((req, res) => {
+        res.status(500).json({ error: 'Server error' });
+      });
+
+      const response = await request(app).get('/words');
+
+      expect(response.status).toBe(500);
+      expect(response.body).toEqual({ error: 'Server error' });
+    });
+  });
+
   describe('GET /words/:word', () => {
     it('should return the word details with status 200', async () => {
       const mockWord = { word: 'test', synonyms: ['example', 'sample'] };
