@@ -8,6 +8,7 @@ To run the project locally run these commands:
 - npm start
 
 The backend will then be ready to accept requests, to test you can use the postman collection attached to this repository.
+Import the collection to your postman app and send the saved requests.
 
 To run unit tests you can run this command.
 
