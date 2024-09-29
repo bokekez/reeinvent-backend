@@ -18,5 +18,5 @@ function selectModel(req, res) {
 
 module.exports = {
   getActiveModel,
-  selectModel
+  selectModel,
 };

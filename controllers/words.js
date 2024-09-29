@@ -1,26 +1,37 @@
-const { getAllWords, findWord, insertWord, doSynonymsExist, editWord, deleteWord, findWordBySubstring } = require('../services/wordsService');
+const {
+  getAllWords,
+  findWord,
+  insertWord,
+  doSynonymsExist,
+  editWord,
+  deleteWord,
+  findWordBySubstring,
+} = require('../services/wordsService');
 
 const getWords = (req, res) => {
-  const { search } = req.query; 
+  const { search } = req.query;
 
-  if(!search) return res.json(getAllWords());
+  if (!search) return res.json(getAllWords());
 
-  if(search.length < 2) return res.status(404).json({ message: `Search word is too short.` });
+  if (search.length < 2)
+    return res.status(404).json({ message: `Search word is too short.` });
 
   const filteredWords = findWordBySubstring(search);
   if (filteredWords.length) {
-      return res.json(filteredWords);
-  } 
-  return res.status(404).json({ message: `No words found containing '${search}'.` });
+    return res.json(filteredWords);
+  }
+  return res
+    .status(404)
+    .json({ message: `No words found containing '${search}'.` });
 };
 
 const getWordByName = (req, res) => {
-  const word = req.params.word.toLowerCase(); 
+  const word = req.params.word.toLowerCase();
   const foundWord = findWord(word);
 
   if (foundWord) {
     return res.json(foundWord);
-  } 
+  }
 
   res.status(404).json({ message: `Word '${req.params.word}' not found` });
 };
@@ -29,7 +40,9 @@ const addWord = (req, res) => {
   const { word, synonym } = req.body;
 
   if (!word) {
-    return res.status(400).json({ message: 'Invalid input: word is required.' });
+    return res
+      .status(400)
+      .json({ message: 'Invalid input: word is required.' });
   }
 
   if (findWord(word)) {
@@ -38,7 +51,11 @@ const addWord = (req, res) => {
 
   const nonExistingSynonyms = doSynonymsExist(synonym);
   if (synonym.length && nonExistingSynonyms.length) {
-    return res.status(400).json({ message: `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`});
+    return res
+      .status(400)
+      .json({
+        message: `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`,
+      });
   }
 
   const newWord = insertWord(word, synonym);
@@ -50,7 +67,11 @@ const updateWord = (req, res) => {
   const { newWord, newSynonyms } = req.body;
 
   if (!word || !newWord || !newSynonyms || !Array.isArray(newSynonyms)) {
-    return res.status(400).json({ message: 'Invalid input: newWord and newSynonyms are required.' });
+    return res
+      .status(400)
+      .json({
+        message: 'Invalid input: newWord and newSynonyms are required.',
+      });
   }
 
   const result = editWord(word, newWord, newSynonyms);
@@ -59,7 +80,9 @@ const updateWord = (req, res) => {
     return res.status(400).json({ message: result.message });
   }
 
-  res.status(200).json({ message: `${word} updated to ${newWord}`, newWord, newSynonyms });
+  res
+    .status(200)
+    .json({ message: `${word} updated to ${newWord}`, newWord, newSynonyms });
 };
 
 const removeWord = (req, res) => {
@@ -78,5 +101,5 @@ module.exports = {
   getWordByName,
   addWord,
   updateWord,
-  removeWord
+  removeWord,
 };

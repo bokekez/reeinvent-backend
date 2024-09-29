@@ -1,902 +1,902 @@
 {
-	"info": {
-		"_postman_id": "0697b02a-536e-437b-9b98-72b2451661e2",
-		"name": "Reeinvent",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Words",
-			"item": [
-				{
-					"name": "All Words",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8000/words/"
-					},
-					"response": [
-						{
-							"name": "All Words",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "1381"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"565-igMeD5/9w+mwvQBaFGEtBOz0zDc\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 11:26:01 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"id\": 1,\n        \"word\": \"Happy\",\n        \"synonym\": [\n            \"Joyful\",\n            \"Cheerful\"\n        ]\n    },\n    {\n        \"id\": 2,\n        \"word\": \"Joyful\",\n        \"synonym\": [\n            \"Happy\",\n            \"Cheerful\"\n        ]\n    },\n    {\n        \"id\": 3,\n        \"word\": \"Cheerful\",\n        \"synonym\": [\n            \"Joyful\",\n            \"Happy\"\n        ]\n    },\n    {\n        \"id\": 4,\n        \"word\": \"Fast\",\n        \"synonym\": [\n            \"Quick\",\n            \"Speedy\"\n        ]\n    },\n    {\n        \"id\": 5,\n        \"word\": \"Quick\",\n        \"synonym\": [\n            \"Fast\",\n            \"Speedy\"\n        ]\n    },\n    {\n        \"id\": 6,\n        \"word\": \"Speedy\",\n        \"synonym\": [\n            \"Quick\",\n            \"Fast\"\n        ]\n    },\n    {\n        \"id\": 7,\n        \"word\": \"Smart\",\n        \"synonym\": [\n            \"Clever\",\n            \"Bright\"\n        ]\n    },\n    {\n        \"id\": 8,\n        \"word\": \"Clever\",\n        \"synonym\": [\n            \"Smart\",\n            \"Bright\"\n        ]\n    },\n    {\n        \"id\": 9,\n        \"word\": \"Bright\",\n        \"synonym\": [\n            \"Clever\",\n            \"Smart\"\n        ]\n    },\n    {\n        \"id\": 10,\n        \"word\": \"Angry\",\n        \"synonym\": [\n            \"Furious\",\n            \"Enraged\"\n        ]\n    },\n    {\n        \"id\": 11,\n        \"word\": \"Furious\",\n        \"synonym\": [\n            \"Angry\",\n            \"Enraged\"\n        ]\n    },\n    {\n        \"id\": 12,\n        \"word\": \"Enraged\",\n        \"synonym\": [\n            \"Furious\",\n            \"Angry\"\n        ]\n    },\n    {\n        \"id\": 13,\n        \"word\": \"Beautiful\",\n        \"synonym\": [\n            \"Gorgeous\",\n            \"Attractive\"\n        ]\n    },\n    {\n        \"id\": 14,\n        \"word\": \"Gorgeous\",\n        \"synonym\": [\n            \"Beautiful\",\n            \"Attractive\"\n        ]\n    },\n    {\n        \"id\": 15,\n        \"word\": \"Attractive\",\n        \"synonym\": [\n            \"Gorgeous\",\n            \"Beautiful\"\n        ]\n    },\n    {\n        \"id\": 16,\n        \"word\": \"Strong\",\n        \"synonym\": [\n            \"Powerful\",\n            \"Tough\"\n        ]\n    },\n    {\n        \"id\": 17,\n        \"word\": \"Powerful\",\n        \"synonym\": [\n            \"Strong\",\n            \"Tough\"\n        ]\n    },\n    {\n        \"id\": 18,\n        \"word\": \"Tough\",\n        \"synonym\": [\n            \"Powerful\",\n            \"Strong\"\n        ]\n    },\n    {\n        \"id\": 19,\n        \"word\": \"Brave\",\n        \"synonym\": [\n            \"Courageous\",\n            \"Fearless\"\n        ]\n    },\n    {\n        \"id\": 20,\n        \"word\": \"Courageous\",\n        \"synonym\": [\n            \"Brave\",\n            \"Fearless\"\n        ]\n    },\n    {\n        \"id\": 21,\n        \"word\": \"Fearless\",\n        \"synonym\": [\n            \"Courageous\",\n            \"Brave\"\n        ]\n    },\n    {\n        \"id\": 22,\n        \"word\": \"Calm\",\n        \"synonym\": [\n            \"Peaceful\",\n            \"Tranquil\"\n        ]\n    },\n    {\n        \"id\": 23,\n        \"word\": \"Peaceful\",\n        \"synonym\": [\n            \"Calm\",\n            \"Tranquil\"\n        ]\n    },\n    {\n        \"id\": 24,\n        \"word\": \"Tranquil\",\n        \"synonym\": [\n            \"Peaceful\",\n            \"Calm\"\n        ]\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "One Word",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8000/words/Cheerful"
-					},
-					"response": [
-						{
-							"name": "One Word",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/Quick"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "51"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"33-ggC5+eotnSOuGLrP5ll1ZiGHwqI\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 10:59:32 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": 5,\n    \"word\": \"Quick\",\n    \"synonym\": [\n        \"Fast\",\n        \"Speedy\"\n    ]\n}"
-						},
-						{
-							"name": "One Word",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/Cheerful"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "81"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"51-p+wq1VbXQT05/cCEZvY1yiI/ry4\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 18:06:46 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"word\": {\n        \"id\": 3,\n        \"word\": \"Cheerful\",\n        \"synonym\": [\n            \"Joyful\"\n        ]\n    },\n    \"transitive\": [\n        [\n            \"Happy\"\n        ]\n    ]\n}"
-						},
-						{
-							"name": "One Word",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/Cheerful"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "55"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"37-Rinnd+vM9ntBSI1D7CyIN7MIctM\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 18:09:49 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": 3,\n    \"word\": \"Cheerful\",\n    \"synonym\": [\n        \"Joyful\",\n        \"Happy\"\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "One Word (Case Insensitive)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8000/words/quick"
-					},
-					"response": [
-						{
-							"name": "One Word (Case Insensitive)",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/quick"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "51"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"33-ggC5+eotnSOuGLrP5ll1ZiGHwqI\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 10:58:40 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": 5,\n    \"word\": \"Quick\",\n    \"synonym\": [\n        \"Fast\",\n        \"Speedy\"\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "One Word Not Found",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8000/words/quick2"
-					},
-					"response": [
-						{
-							"name": "One Word Not Found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/words/quick2"
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "37"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"25-IWxzThfwOp7Yt9Llq2q6CZ1fX14\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 11:17:35 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Word 'quick2' not found\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Insert a Word",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\", \"Peaceful\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/words/"
-					},
-					"response": [
-						{
-							"name": "Insert a Word",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\", \"Peaceful\"]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/words/"
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "56"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"38-w84uDozxiNngiyk02rHUPsakoDo\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 11:14:35 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": 25,\n    \"word\": \"Relaxed\",\n    \"synonym\": [\n        \"Calm\",\n        \"Peaceful\"\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Insert a Word Already Exists",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/words/"
-					},
-					"response": [
-						{
-							"name": "Insert a Word Already Exists",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\"]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/words/"
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "43"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"2b-ZfcoVJHxJat88ppSw/D4cENqTGI\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 11:15:46 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Word 'Relaxed' already exists\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Insert a Word Synonym Nonexistant",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"word\": \"Relaxed2\",\n    \"synonym\": [\"Calm2\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/words/"
-					},
-					"response": [
-						{
-							"name": "Insert a Word Synonym Nonexistant",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"word\": \"Relaxed2\",\n    \"synonym\": [\"Calm2\"]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/words/"
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "50"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"32-+oXe5CfqF4BRwVX0uAKd8NUVDvk\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 11:16:56 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "\"Synonym Calm2 does not exist in the words array.\""
-						}
-					]
-				},
-				{
-					"name": "Edit a Word",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"newWord\": \"CourageousNew\",\n    \"newSynonyms\": [\"Brave\", \"Fearless\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/words/Courageous"
-					},
-					"response": [
-						{
-							"name": "Edit a Word",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"newWord\": \"Courageous New\",\n    \"newSynonyms\": [\"Brave\", \"Fearless\"]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/words/Courageous"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "112"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"70-nhBEnrvXOw0dgWOOkj5nCOVI1Vc\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 12:53:26 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Courageous updated to Courageous New\",\n    \"newWord\": \"Courageous New\",\n    \"newSynonyms\": [\n        \"Brave\",\n        \"Fearless\"\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "One Word",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "http://localhost:8000/words/Tranquil"
-					},
-					"response": [
-						{
-							"name": "One Word",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": "http://localhost:8000/words/Fearless"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "39"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"27-/LZ6bflxJco/FFnBs0GibwZY9NY\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 12:25:37 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "\"Word 'Fearless' deleted successfully.\""
-						}
-					]
-				},
-				{
-					"name": "One Word Not Found",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "http://localhost:8000/words/Tranquil"
-					},
-					"response": [
-						{
-							"name": "One Word Not Found",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": "http://localhost:8000/words/Tranquil2"
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "41"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"29-en5Iq1daKVCB0oe4y3NSBkCCa+s\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 12:26:34 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Word 'Tranquil2' not found.\"\n}"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Word Model",
-			"item": [
-				{
-					"name": "Active Model",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8000/modelSelector/activeModel"
-					},
-					"response": [
-						{
-							"name": "Active Model",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": "http://localhost:8000/modelSelector/activeModel"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "7"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"7-0tRWb65LHMJ9rOtjniMy4n3UpdQ\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 16:18:07 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "\"basic\""
-						}
-					]
-				},
-				{
-					"name": "Switch Model Transitive",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"modelName\": \"transitive\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/modelSelector/switchModel"
-					},
-					"response": [
-						{
-							"name": "Switch Model Transitive",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"modelName\": \"transitive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/modelSelector/switchModel"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "44"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"2c-Fqs6XQyXWVAYC+Wt6z1sODA0yhI\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 16:44:40 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Model switched to 'transitive'\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Switch Model Transitive Copy",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"modelName\": \"basic\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8000/modelSelector/switchModel"
-					},
-					"response": [
-						{
-							"name": "Switch Model Transitive Copy",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"modelName\": \"basic\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8000/modelSelector/switchModel"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "39"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"27-f8vsXn7vD620Zp4CPkrzZPJgNs0\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 24 Sep 2024 16:45:12 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Model switched to 'basic'\"\n}"
-						}
-					]
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "0697b02a-536e-437b-9b98-72b2451661e2",
+    "name": "Reeinvent",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Words",
+      "item": [
+        {
+          "name": "All Words",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/words/"
+          },
+          "response": [
+            {
+              "name": "All Words",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1381"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"565-igMeD5/9w+mwvQBaFGEtBOz0zDc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 11:26:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"word\": \"Happy\",\n        \"synonym\": [\n            \"Joyful\",\n            \"Cheerful\"\n        ]\n    },\n    {\n        \"id\": 2,\n        \"word\": \"Joyful\",\n        \"synonym\": [\n            \"Happy\",\n            \"Cheerful\"\n        ]\n    },\n    {\n        \"id\": 3,\n        \"word\": \"Cheerful\",\n        \"synonym\": [\n            \"Joyful\",\n            \"Happy\"\n        ]\n    },\n    {\n        \"id\": 4,\n        \"word\": \"Fast\",\n        \"synonym\": [\n            \"Quick\",\n            \"Speedy\"\n        ]\n    },\n    {\n        \"id\": 5,\n        \"word\": \"Quick\",\n        \"synonym\": [\n            \"Fast\",\n            \"Speedy\"\n        ]\n    },\n    {\n        \"id\": 6,\n        \"word\": \"Speedy\",\n        \"synonym\": [\n            \"Quick\",\n            \"Fast\"\n        ]\n    },\n    {\n        \"id\": 7,\n        \"word\": \"Smart\",\n        \"synonym\": [\n            \"Clever\",\n            \"Bright\"\n        ]\n    },\n    {\n        \"id\": 8,\n        \"word\": \"Clever\",\n        \"synonym\": [\n            \"Smart\",\n            \"Bright\"\n        ]\n    },\n    {\n        \"id\": 9,\n        \"word\": \"Bright\",\n        \"synonym\": [\n            \"Clever\",\n            \"Smart\"\n        ]\n    },\n    {\n        \"id\": 10,\n        \"word\": \"Angry\",\n        \"synonym\": [\n            \"Furious\",\n            \"Enraged\"\n        ]\n    },\n    {\n        \"id\": 11,\n        \"word\": \"Furious\",\n        \"synonym\": [\n            \"Angry\",\n            \"Enraged\"\n        ]\n    },\n    {\n        \"id\": 12,\n        \"word\": \"Enraged\",\n        \"synonym\": [\n            \"Furious\",\n            \"Angry\"\n        ]\n    },\n    {\n        \"id\": 13,\n        \"word\": \"Beautiful\",\n        \"synonym\": [\n            \"Gorgeous\",\n            \"Attractive\"\n        ]\n    },\n    {\n        \"id\": 14,\n        \"word\": \"Gorgeous\",\n        \"synonym\": [\n            \"Beautiful\",\n            \"Attractive\"\n        ]\n    },\n    {\n        \"id\": 15,\n        \"word\": \"Attractive\",\n        \"synonym\": [\n            \"Gorgeous\",\n            \"Beautiful\"\n        ]\n    },\n    {\n        \"id\": 16,\n        \"word\": \"Strong\",\n        \"synonym\": [\n            \"Powerful\",\n            \"Tough\"\n        ]\n    },\n    {\n        \"id\": 17,\n        \"word\": \"Powerful\",\n        \"synonym\": [\n            \"Strong\",\n            \"Tough\"\n        ]\n    },\n    {\n        \"id\": 18,\n        \"word\": \"Tough\",\n        \"synonym\": [\n            \"Powerful\",\n            \"Strong\"\n        ]\n    },\n    {\n        \"id\": 19,\n        \"word\": \"Brave\",\n        \"synonym\": [\n            \"Courageous\",\n            \"Fearless\"\n        ]\n    },\n    {\n        \"id\": 20,\n        \"word\": \"Courageous\",\n        \"synonym\": [\n            \"Brave\",\n            \"Fearless\"\n        ]\n    },\n    {\n        \"id\": 21,\n        \"word\": \"Fearless\",\n        \"synonym\": [\n            \"Courageous\",\n            \"Brave\"\n        ]\n    },\n    {\n        \"id\": 22,\n        \"word\": \"Calm\",\n        \"synonym\": [\n            \"Peaceful\",\n            \"Tranquil\"\n        ]\n    },\n    {\n        \"id\": 23,\n        \"word\": \"Peaceful\",\n        \"synonym\": [\n            \"Calm\",\n            \"Tranquil\"\n        ]\n    },\n    {\n        \"id\": 24,\n        \"word\": \"Tranquil\",\n        \"synonym\": [\n            \"Peaceful\",\n            \"Calm\"\n        ]\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "One Word",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/words/Cheerful"
+          },
+          "response": [
+            {
+              "name": "One Word",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/Quick"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"33-ggC5+eotnSOuGLrP5ll1ZiGHwqI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 10:59:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"word\": \"Quick\",\n    \"synonym\": [\n        \"Fast\",\n        \"Speedy\"\n    ]\n}"
+            },
+            {
+              "name": "One Word",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/Cheerful"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "81"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"51-p+wq1VbXQT05/cCEZvY1yiI/ry4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 18:06:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"word\": {\n        \"id\": 3,\n        \"word\": \"Cheerful\",\n        \"synonym\": [\n            \"Joyful\"\n        ]\n    },\n    \"transitive\": [\n        [\n            \"Happy\"\n        ]\n    ]\n}"
+            },
+            {
+              "name": "One Word",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/Cheerful"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "55"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"37-Rinnd+vM9ntBSI1D7CyIN7MIctM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 18:09:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"word\": \"Cheerful\",\n    \"synonym\": [\n        \"Joyful\",\n        \"Happy\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "One Word (Case Insensitive)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/words/quick"
+          },
+          "response": [
+            {
+              "name": "One Word (Case Insensitive)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/quick"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"33-ggC5+eotnSOuGLrP5ll1ZiGHwqI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 10:58:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"word\": \"Quick\",\n    \"synonym\": [\n        \"Fast\",\n        \"Speedy\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "One Word Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/words/quick2"
+          },
+          "response": [
+            {
+              "name": "One Word Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/words/quick2"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "37"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"25-IWxzThfwOp7Yt9Llq2q6CZ1fX14\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 11:17:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Word 'quick2' not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Insert a Word",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\", \"Peaceful\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/words/"
+          },
+          "response": [
+            {
+              "name": "Insert a Word",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\", \"Peaceful\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/words/"
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-w84uDozxiNngiyk02rHUPsakoDo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 11:14:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 25,\n    \"word\": \"Relaxed\",\n    \"synonym\": [\n        \"Calm\",\n        \"Peaceful\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Insert a Word Already Exists",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/words/"
+          },
+          "response": [
+            {
+              "name": "Insert a Word Already Exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"word\": \"Relaxed\",\n    \"synonym\": [\"Calm\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/words/"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "43"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2b-ZfcoVJHxJat88ppSw/D4cENqTGI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 11:15:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Word 'Relaxed' already exists\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Insert a Word Synonym Nonexistant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"word\": \"Relaxed2\",\n    \"synonym\": [\"Calm2\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/words/"
+          },
+          "response": [
+            {
+              "name": "Insert a Word Synonym Nonexistant",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"word\": \"Relaxed2\",\n    \"synonym\": [\"Calm2\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/words/"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "50"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"32-+oXe5CfqF4BRwVX0uAKd8NUVDvk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 11:16:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "\"Synonym Calm2 does not exist in the words array.\""
+            }
+          ]
+        },
+        {
+          "name": "Edit a Word",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"newWord\": \"CourageousNew\",\n    \"newSynonyms\": [\"Brave\", \"Fearless\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/words/Courageous"
+          },
+          "response": [
+            {
+              "name": "Edit a Word",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"newWord\": \"Courageous New\",\n    \"newSynonyms\": [\"Brave\", \"Fearless\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/words/Courageous"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "112"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"70-nhBEnrvXOw0dgWOOkj5nCOVI1Vc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 12:53:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Courageous updated to Courageous New\",\n    \"newWord\": \"Courageous New\",\n    \"newSynonyms\": [\n        \"Brave\",\n        \"Fearless\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "One Word",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:8000/words/Tranquil"
+          },
+          "response": [
+            {
+              "name": "One Word",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": "http://localhost:8000/words/Fearless"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "39"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"27-/LZ6bflxJco/FFnBs0GibwZY9NY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 12:25:37 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "\"Word 'Fearless' deleted successfully.\""
+            }
+          ]
+        },
+        {
+          "name": "One Word Not Found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:8000/words/Tranquil"
+          },
+          "response": [
+            {
+              "name": "One Word Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": "http://localhost:8000/words/Tranquil2"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"29-en5Iq1daKVCB0oe4y3NSBkCCa+s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 12:26:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Word 'Tranquil2' not found.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Word Model",
+      "item": [
+        {
+          "name": "Active Model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/modelSelector/activeModel"
+          },
+          "response": [
+            {
+              "name": "Active Model",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:8000/modelSelector/activeModel"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "7"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7-0tRWb65LHMJ9rOtjniMy4n3UpdQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 16:18:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "\"basic\""
+            }
+          ]
+        },
+        {
+          "name": "Switch Model Transitive",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"modelName\": \"transitive\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/modelSelector/switchModel"
+          },
+          "response": [
+            {
+              "name": "Switch Model Transitive",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"modelName\": \"transitive\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/modelSelector/switchModel"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "44"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2c-Fqs6XQyXWVAYC+Wt6z1sODA0yhI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 16:44:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Model switched to 'transitive'\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Switch Model Transitive Copy",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"modelName\": \"basic\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:8000/modelSelector/switchModel"
+          },
+          "response": [
+            {
+              "name": "Switch Model Transitive Copy",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"modelName\": \"basic\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "http://localhost:8000/modelSelector/switchModel"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "39"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"27-f8vsXn7vD620Zp4CPkrzZPJgNs0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Sep 2024 16:45:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Model switched to 'basic'\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

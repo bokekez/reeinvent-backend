@@ -3,12 +3,12 @@ const wordsTransitive = require('../models/wordsTransitive');
 
 const modelMap = {
   basic: wordsBasic,
-  transitive: wordsTransitive
+  transitive: wordsTransitive,
 };
 
 const activeModel = {
   activeModel: 'basic',
-  words: modelMap['basic']
+  words: modelMap['basic'],
 };
 
 function getActiveModel() {
@@ -28,5 +28,5 @@ function selectModel(modelName) {
 module.exports = {
   activeModel,
   getActiveModel,
-  selectModel
+  selectModel,
 };

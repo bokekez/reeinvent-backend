@@ -22,7 +22,7 @@ const wordsTransitive = [
   { id: 21, word: 'Fearless', synonym: ['Courageous'] },
   { id: 22, word: 'Calm', synonym: ['Peaceful'] },
   { id: 23, word: 'Peaceful', synonym: ['Calm', 'Tranquil'] },
-  { id: 24, word: 'Tranquil', synonym: ['Peaceful'] }
+  { id: 24, word: 'Tranquil', synonym: ['Peaceful'] },
 ];
 
 module.exports = wordsTransitive;

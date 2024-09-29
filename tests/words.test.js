@@ -1,40 +1,42 @@
 const request = require('supertest');
 const express = require('express');
-const wordsRouter = require('../routes/words'); 
-const wordsController = require('../controllers/words'); 
+const wordsRouter = require('../routes/words');
+const wordsController = require('../controllers/words');
 
 const app = express();
-app.use(express.json()); 
+app.use(express.json());
 app.use('/words', wordsRouter);
 
 jest.mock('../controllers/words');
 
 describe('Words API', () => {
-
   describe('GET /words', () => {
     it('should return a list of words with status 200', async () => {
-      const mockWords = [{ word: 'apple', synonyms: ['fruit', 'food'] }, { word: 'banana', synonyms: ['fruit', 'yellow'] }];
+      const mockWords = [
+        { word: 'apple', synonyms: ['fruit', 'food'] },
+        { word: 'banana', synonyms: ['fruit', 'yellow'] },
+      ];
       wordsController.getWords.mockImplementation((req, res) => {
         res.status(200).json(mockWords);
       });
-  
+
       const response = await request(app).get('/words');
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual(mockWords);
     });
-  
+
     it('should return an empty array if there are no words', async () => {
       wordsController.getWords.mockImplementation((req, res) => {
         res.status(200).json([]);
       });
 
       const response = await request(app).get('/words');
-  
+
       expect(response.status).toBe(200);
-      expect(response.body).toEqual([]); 
+      expect(response.body).toEqual([]);
     });
-  
+
     it('should return 500 if there is a server error', async () => {
       wordsController.getWords.mockImplementation((req, res) => {
         res.status(500).json({ error: 'Server error' });
@@ -79,9 +81,7 @@ describe('Words API', () => {
         res.status(201).json(newWord);
       });
 
-      const response = await request(app)
-        .post('/words')
-        .send(newWord);
+      const response = await request(app).post('/words').send(newWord);
 
       expect(response.status).toBe(201);
       expect(response.body).toEqual(newWord);
@@ -134,7 +134,7 @@ describe('Words API', () => {
   describe('DELETE /words/:word', () => {
     it('should delete the word and return status 204', async () => {
       wordsController.removeWord.mockImplementation((req, res) => {
-        res.status(204).send(); 
+        res.status(204).send();
       });
 
       const response = await request(app).delete('/words/test');
@@ -151,5 +151,4 @@ describe('Words API', () => {
       expect(response.body).toEqual({ message: 'Word not found' });
     });
   });
-
 });
