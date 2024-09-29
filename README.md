@@ -13,3 +13,5 @@ Import the collection to your postman app and send the saved requests.
 To run unit tests you can run this command.
 
 -npm test
+
+All data for this app is saved in the RAM, so if this service goes to sleep or is restarted all the data will be reset.
