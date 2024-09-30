@@ -51,11 +51,9 @@ const addWord = (req, res) => {
 
   const nonExistingSynonyms = doSynonymsExist(synonym);
   if (synonym.length && nonExistingSynonyms.length) {
-    return res
-      .status(400)
-      .json({
-        message: `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`,
-      });
+    return res.status(400).json({
+      message: `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`,
+    });
   }
 
   const newWord = insertWord(word, synonym);
@@ -67,11 +65,9 @@ const updateWord = (req, res) => {
   const { newWord, newSynonyms } = req.body;
 
   if (!word || !newWord || !newSynonyms || !Array.isArray(newSynonyms)) {
-    return res
-      .status(400)
-      .json({
-        message: 'Invalid input: newWord and newSynonyms are required.',
-      });
+    return res.status(400).json({
+      message: 'Invalid input: newWord and newSynonyms are required.',
+    });
   }
 
   const result = editWord(word, newWord, newSynonyms);
