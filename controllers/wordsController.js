@@ -11,14 +11,14 @@ const {
 const getWords = (req, res) => {
   const { search } = req.query;
 
-  if (!search) return res.json(getAllWords());
+  if (!search) return res.status(200).json(getAllWords());
 
   if (search.length < 2)
     return res.status(404).json({ message: `Search word is too short.` });
 
   const filteredWords = findWordBySubstring(search);
   if (filteredWords.length) {
-    return res.json(filteredWords);
+    return res.status(200).json(filteredWords);
   }
   return res
     .status(404)
@@ -30,7 +30,7 @@ const getWordByName = (req, res) => {
   const foundWord = findWord(word);
 
   if (foundWord) {
-    return res.json(foundWord);
+    return res.status(200).json(foundWord);
   }
 
   res.status(404).json({ message: `Word '${req.params.word}' not found` });

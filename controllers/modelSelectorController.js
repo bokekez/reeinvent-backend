@@ -1,11 +1,11 @@
 const modelSelectorService = require('../services/modelSelectorService');
 
-function getActiveModel(req, res) {
+const getActiveModel = (req, res) => {
   const result = modelSelectorService.getActiveModel();
   res.status(200).json(result.activeModel);
-}
+};
 
-function selectModel(req, res) {
+const selectModel = (req, res) => {
   const { modelName } = req.body;
 
   try {
@@ -14,7 +14,7 @@ function selectModel(req, res) {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-}
+};
 
 module.exports = {
   getActiveModel,

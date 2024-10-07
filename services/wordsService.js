@@ -72,7 +72,7 @@ const deleteWord = (word) => {
   return true;
 };
 
-function editWord(word, newWord, newSynonyms) {
+const editWord = (word, newWord, newSynonyms) => {
   const words = getAllWords();
   const wordIndex = words.findIndex((element) =>
     checkWords(element.word, word)
@@ -107,7 +107,7 @@ function editWord(word, newWord, newSynonyms) {
       message: `Synonyms must exist as words, ${synonymWordCheck} are not words!`,
     };
 
-  if (words[wordIndex].synonym.length > newSynonyms.length) {
+  if (duplicateCheck && words[wordIndex].synonym.length > newSynonyms.length) {
     const wordToUpdate = duplicateCheck.synonym.filter(
       (syn) => !newSynonyms.includes(syn)
     );
@@ -140,7 +140,7 @@ function editWord(word, newWord, newSynonyms) {
     message: `Word '${word}' updated to '${newWord}'.`,
     word: { word: newWord, synonym: newSynonyms },
   };
-}
+};
 
 const getTraslativeSynonyms = (words, wordSearch) => {
   const translative = [];
@@ -156,13 +156,13 @@ const getTraslativeSynonyms = (words, wordSearch) => {
   return translative.flat();
 };
 
-function findWordBySubstring(substring) {
+const findWordBySubstring = (substring) => {
   const words = getAllWords();
   const lowerCaseSubstr = substring.toLowerCase();
   return words.filter((wordObj) =>
     wordObj.word.toLowerCase().includes(lowerCaseSubstr)
   );
-}
+};
 
 const checkWords = (word, wordSearch) => {
   if (word.toLowerCase() === wordSearch.toLowerCase()) return true;

@@ -1,6 +1,6 @@
 const express = require('express');
-const words = require('./words');
-const modelSelector = require('./modelSelector');
+const words = require('./wordsRoute');
+const modelSelector = require('./modelSelectorRoute');
 
 const router = express.Router();
 

@@ -11,11 +11,11 @@ const activeModel = {
   words: modelMap['basic'],
 };
 
-function getActiveModel() {
+const getActiveModel = () => {
   return activeModel;
-}
+};
 
-function selectModel(modelName) {
+const selectModel = (modelName) => {
   const selectedModel = modelMap[modelName];
   if (selectedModel) {
     activeModel.activeModel = modelName;
@@ -23,7 +23,7 @@ function selectModel(modelName) {
     return activeModel;
   }
   throw new Error('Invalid model name. Use "basic" or "transitive".');
-}
+};
 
 module.exports = {
   activeModel,
