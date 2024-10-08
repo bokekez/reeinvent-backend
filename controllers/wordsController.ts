@@ -14,24 +14,7 @@ import {
   notFoundResponse,
   invalidInputResponse,
   customResponse,
-} from '../middleware/responseHelper'
-// const {
-//   getAllWords,
-//   findWord,
-//   insertWord,
-//   doSynonymsExist,
-//   editWord,
-//   deleteWord,
-//   findWordBySubstring,
-// } = require('../services/wordsService');
-// const {
-//   successResponse,
-//   errorResponse,
-//   notFoundResponse,
-//   invalidInputResponse,
-//   customResponse,
-//   statusMap
-// } = require('../middleware/responseHelper');
+} from '../middleware/responseHelper';
 
 interface RequestWithQuery extends Request {
   query: {
@@ -48,6 +31,7 @@ interface RequestWithParams extends Request {
 interface WordRequestBody {
   word: string;
   synonym: Array<string>;
+  strict?: boolean | true;
 }
 
 interface RequestWithBody extends Request {
@@ -56,7 +40,8 @@ interface RequestWithBody extends Request {
 
 interface RequestWithBodyAndParams extends Request {
   params: {
-    word: string;
+    word?: string;
+    search?: string;
   };
   body: {
     newWord?: string;
@@ -66,7 +51,7 @@ interface RequestWithBodyAndParams extends Request {
 
 const getWords = (req: RequestWithQuery, res: Response): any => {
   const { search } = req.query;
-  
+
   if (!search) {
     return res.status(200).json(successResponse(getAllWords()));
   }
@@ -93,16 +78,16 @@ const getWordByName = (req: RequestWithParams, res: Response): any => {
     return res.status(200).json(successResponse(foundWord));
   }
 
-  return res.status(404).json(notFoundResponse(`Word '${req.params.word}' not found.`));
+  return res
+    .status(404)
+    .json(notFoundResponse(`Word '${req.params.word}' not found.`));
 };
 
 const addWord = (req: RequestWithBody, res: Response): any => {
-  const { word, synonym } = req.body;
+  const { word, synonym, strict } = req.body;
 
   if (!word) {
-    return res
-      .status(400)
-      .json(invalidInputResponse('word is required.'));
+    return res.status(400).json(invalidInputResponse('word is required.'));
   }
 
   if (findWord(word)) {
@@ -112,12 +97,14 @@ const addWord = (req: RequestWithBody, res: Response): any => {
   }
 
   const nonExistingSynonyms = doSynonymsExist(synonym);
-  if (synonym.length && nonExistingSynonyms.length) {
-    return res.status(400).json(
-      errorResponse(
-        `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`
-      )
-    );
+  if (strict && synonym.length && nonExistingSynonyms.length) {
+    return res
+      .status(400)
+      .json(
+        errorResponse(
+          `Synonym(s) ${nonExistingSynonyms} do not exist in the words array.`
+        )
+      );
   }
 
   const newWord = insertWord(word, synonym);
@@ -129,9 +116,9 @@ const updateWord = (req: RequestWithBodyAndParams, res: Response): any => {
   const { newWord, newSynonyms } = req.body;
 
   if (!word || !newWord || !newSynonyms || !Array.isArray(newSynonyms)) {
-    return res.status(400).json(
-      invalidInputResponse('newWord and newSynonyms are required.')
-    );
+    return res
+      .status(400)
+      .json(invalidInputResponse('newWord and newSynonyms are required.'));
   }
 
   const result = editWord(word, newWord, newSynonyms);
@@ -143,10 +130,7 @@ const updateWord = (req: RequestWithBodyAndParams, res: Response): any => {
   return res
     .status(200)
     .json(
-      customResponse(
-        `${word} updated to ${newWord}`,
-        { newWord, newSynonyms }
-      )
+      customResponse(`${word} updated to ${newWord}`, { newWord, newSynonyms })
     );
 };
 
@@ -171,4 +155,4 @@ const wordsController = {
   removeWord,
 };
 
-export default wordsController
+export default wordsController;

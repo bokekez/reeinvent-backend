@@ -17,7 +17,9 @@ const selectModel = (req: RequestWithBody, res: Response): any => {
 
   try {
     modelSelectorService.selectModel(modelName);
-    return res.status(200).json({ message: `Model switched to '${modelName}'` });
+    return res
+      .status(200)
+      .json({ message: `Model switched to '${modelName}'` });
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
   }

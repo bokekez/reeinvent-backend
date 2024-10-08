@@ -40,7 +40,6 @@ const modelSelectorService = {
   activeModel,
   getActiveModel,
   selectModel,
-}
+};
 
-export default modelSelectorService
-
+export default modelSelectorService;

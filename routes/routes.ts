@@ -1,5 +1,5 @@
 import express from 'express';
-import words from'./wordsRoute';
+import words from './wordsRoute';
 import modelSelector from './modelSelectorRoute';
 
 const router = express.Router();

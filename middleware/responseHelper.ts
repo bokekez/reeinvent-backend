@@ -14,11 +14,11 @@ const statusMap: StatusMap = {
   success: 200,
   created: 201,
   badRequest: 400,
-  notFound: 404
-}
+  notFound: 404,
+};
 
 const successResponse = (data: any): ResponseMessage => ({
-  message: "Success",
+  message: 'Success',
   data,
 });
 
@@ -39,8 +39,15 @@ const customResponse = (message: string, data?: any): ResponseMessage => ({
   data,
 });
 
-const getStatus = (status: keyof StatusMap): number  => {
+const getStatus = (status: keyof StatusMap): number => {
   return statusMap[status];
-}
+};
 
-export { successResponse, errorResponse, notFoundResponse, invalidInputResponse, customResponse, getStatus };
+export {
+  successResponse,
+  errorResponse,
+  notFoundResponse,
+  invalidInputResponse,
+  customResponse,
+  getStatus,
+};

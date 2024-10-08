@@ -5,7 +5,7 @@ interface Word {
   id: number;
   word: string;
   synonym: string[];
-  transitive?: string[]; 
+  transitive?: string[];
 }
 
 const getActiveModel = (): ActiveModel => {
@@ -27,7 +27,10 @@ const findWord = (wordSearch: string): Word | undefined => {
   const word = wordsModel.words.find((element: Word) =>
     checkWords(element.word, wordSearch)
   );
-  const transitive = getTranslativeSynonyms(wordsModel.words as Word[], wordSearch);
+  const transitive = getTranslativeSynonyms(
+    wordsModel.words as Word[],
+    wordSearch
+  );
   if (!word) return;
   (word as Word & { transitive?: string[] }).transitive = transitive.filter(
     (transSyn) => !word.synonym.includes(transSyn)
@@ -60,9 +63,22 @@ const addSynonyms = (word: string, synonyms: string[], words: Word[]): void => {
     const updateIndex = words.findIndex((element) =>
       checkWords(element.word, syn)
     );
+    if (updateIndex === -1) return sanitizeSynomys(syn, synonyms, word);
     if (words[updateIndex].synonym.includes(word)) return;
     words[updateIndex].synonym.push(word);
   });
+};
+
+const sanitizeSynomys = (
+  synonymToWord: string,
+  synonyms: string[],
+  word: string
+) => {
+  const newWordsSynoyms: string[] = synonyms.filter(
+    (el: string) => el !== synonymToWord
+  );
+  newWordsSynoyms.push(word);
+  insertWord(synonymToWord, newWordsSynoyms);
 };
 
 const deleteWord = (word: string): boolean => {
@@ -154,7 +170,10 @@ const editWord = (word: string, newWord: string, newSynonyms: string[]) => {
   };
 };
 
-const getTranslativeSynonyms = (words: Word[], wordSearch: string): string[] => {
+const getTranslativeSynonyms = (
+  words: Word[],
+  wordSearch: string
+): string[] => {
   const translative: string[] = [];
   words.forEach((word) => {
     if (word.synonym.some((syn) => checkWords(syn, wordSearch))) {
