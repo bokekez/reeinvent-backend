@@ -1,5 +1,5 @@
-const express = require('express');
-const router = require('./routes/routes');
+import express from 'express';
+import router from './routes/routes';
 const app = express();
 const PORT = process.env.PORT || 8000;
 const cors = require('cors');

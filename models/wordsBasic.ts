@@ -25,4 +25,4 @@ const wordsBasic = [
   { id: 24, word: 'Tranquil', synonym: ['Peaceful', 'Calm'] },
 ];
 
-module.exports = wordsBasic;
+export default wordsBasic;
