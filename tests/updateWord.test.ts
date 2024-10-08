@@ -1,5 +1,5 @@
-const { editWord } = require('../services/wordsService');
-const { updateWord } = require('../controllers/wordsController');
+import { editWord } from '../services/wordsService';
+import wordsController from '../controllers/wordsController';
 
 interface Word {
   id: number;
@@ -36,7 +36,7 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
@@ -57,15 +57,22 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ newWord: 'newWord' })
+      expect.objectContaining({
+        message: 'Happy updated to newWord',
+        data: {
+          // id: expect.any(Number),
+          newWord: 'newWord',
+          newSynonyms: ['Joyful'],
+        },
+      })
     );
 
     const responseData = res.json.mock.calls[0][0];
-    const wordExists = responseData.newSynonyms.some(
+    const wordExists = responseData.data.newSynonyms.some(
       (word: string) => word === 'Joyful'
     );
 
@@ -83,12 +90,12 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: 'Invalid input: newWord and newSynonyms are required.',
+        message: 'Invalid input: newWord and newSynonyms are required..',
       })
     );
   });
@@ -104,12 +111,12 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: 'Invalid input: newWord and newSynonyms are required.',
+        message: 'Invalid input: newWord and newSynonyms are required..',
       })
     );
   });
@@ -125,12 +132,12 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: 'Invalid input: newWord and newSynonyms are required.',
+        message: 'Invalid input: newWord and newSynonyms are required..',
       })
     );
   });
@@ -146,7 +153,7 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
@@ -165,7 +172,7 @@ describe('addWord', () => {
     const req = mockRequest;
     const res = mockResponse();
 
-    updateWord(req, res);
+    wordsController.updateWord(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(

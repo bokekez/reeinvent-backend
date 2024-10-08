@@ -1,7 +1,7 @@
-const request = require('supertest');
-const express = require('express');
-const wordsRouter = require('../routes/wordsRoute');
-const wordsController = require('../controllers/wordsController');
+import request from 'supertest';
+import express, { Request, Response } from 'express';
+import wordsRouter from '../routes/wordsRoute';
+import wordsController from '../controllers/wordsController';
 
 const app = express();
 app.use(express.json());
@@ -10,15 +10,22 @@ app.use('/words', wordsRouter);
 jest.mock('../controllers/wordsController');
 
 describe('Words API', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('GET /words', () => {
     it('should return a list of words with status 200', async () => {
       const mockWords = [
         { word: 'apple', synonyms: ['fruit', 'food'] },
         { word: 'banana', synonyms: ['fruit', 'yellow'] },
       ];
-      wordsController.getWords.mockImplementation((req: any, res: any) => {
-        res.status(200).json(mockWords);
-      });
+
+      (wordsController.getWords as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(200).json(mockWords);
+        }
+      );
 
       const response = await request(app).get('/words');
 
@@ -27,9 +34,11 @@ describe('Words API', () => {
     });
 
     it('should return an empty array if there are no words', async () => {
-      wordsController.getWords.mockImplementation((req: any, res: any) => {
-        res.status(200).json([]);
-      });
+      (wordsController.getWords as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(200).json([]);
+        }
+      );
 
       const response = await request(app).get('/words');
 
@@ -38,9 +47,11 @@ describe('Words API', () => {
     });
 
     it('should return 500 if there is a server error', async () => {
-      wordsController.getWords.mockImplementation((req: any, res: any) => {
-        res.status(500).json({ error: 'Server error' });
-      });
+      (wordsController.getWords as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(500).json({ error: 'Server error' });
+        }
+      );
 
       const response = await request(app).get('/words');
 
@@ -53,9 +64,11 @@ describe('Words API', () => {
     it('should return the word details with status 200', async () => {
       const mockWord = { word: 'test', synonyms: ['example', 'sample'] };
 
-      wordsController.getWordByName.mockImplementation((req: any, res: any) => {
-        res.status(200).json(mockWord);
-      });
+      (wordsController.getWordByName as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(200).json(mockWord);
+        }
+      );
 
       const response = await request(app).get('/words/test');
       expect(response.status).toBe(200);
@@ -63,9 +76,11 @@ describe('Words API', () => {
     });
 
     it('should return 404 if word is not found', async () => {
-      wordsController.getWordByName.mockImplementation((req: any, res: any) => {
-        res.status(404).json({ message: 'Word not found' });
-      });
+      (wordsController.getWordByName as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(404).json({ message: 'Word not found' });
+        }
+      );
 
       const response = await request(app).get('/words/nonexistent');
       expect(response.status).toBe(404);
@@ -77,9 +92,11 @@ describe('Words API', () => {
     it('should add a new word and return it with status 201', async () => {
       const newWord = { word: 'test', synonyms: ['example', 'sample'] };
 
-      wordsController.addWord.mockImplementation((req: any, res: any) => {
-        res.status(201).json(newWord);
-      });
+      (wordsController.addWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(201).json(newWord);
+        }
+      );
 
       const response = await request(app).post('/words').send(newWord);
 
@@ -88,9 +105,11 @@ describe('Words API', () => {
     });
 
     it('should return 400 if the request body is invalid', async () => {
-      wordsController.addWord.mockImplementation((req: any, res: any) => {
-        res.status(400).json({ message: 'Invalid data' });
-      });
+      (wordsController.addWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(400).json({ message: 'Invalid data' });
+        }
+      );
 
       const response = await request(app)
         .post('/words')
@@ -105,9 +124,11 @@ describe('Words API', () => {
     it('should update the word and return the updated data with status 200', async () => {
       const updatedWord = { word: 'test', synonyms: ['updated'] };
 
-      wordsController.updateWord.mockImplementation((req: any, res: any) => {
-        res.status(200).json(updatedWord);
-      });
+      (wordsController.updateWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(200).json(updatedWord);
+        }
+      );
 
       const response = await request(app)
         .put('/words/test')
@@ -118,9 +139,11 @@ describe('Words API', () => {
     });
 
     it('should return 404 if the word is not found for update', async () => {
-      wordsController.updateWord.mockImplementation((req: any, res: any) => {
-        res.status(404).json({ message: 'Word not found' });
-      });
+      (wordsController.updateWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(404).json({ message: 'Word not found' });
+        }
+      );
 
       const response = await request(app)
         .put('/words/nonexistent')
@@ -133,18 +156,22 @@ describe('Words API', () => {
 
   describe('DELETE /words/:word', () => {
     it('should delete the word and return status 204', async () => {
-      wordsController.removeWord.mockImplementation((req: any, res: any) => {
-        res.status(204).send();
-      });
+      (wordsController.removeWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(204).send();
+        }
+      );
 
       const response = await request(app).delete('/words/test');
       expect(response.status).toBe(204);
     });
 
     it('should return 404 if the word is not found for deletion', async () => {
-      wordsController.removeWord.mockImplementation((req: any, res: any) => {
-        res.status(404).json({ message: 'Word not found' });
-      });
+      (wordsController.removeWord as jest.Mock).mockImplementation(
+        (req: Request, res: Response) => {
+          res.status(404).json({ message: 'Word not found' });
+        }
+      );
 
       const response = await request(app).delete('/words/nonexistent');
       expect(response.status).toBe(404);

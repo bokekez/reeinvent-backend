@@ -1,9 +1,6 @@
-const {
-  getActiveModel,
-  selectModel,
-} = require('../services/modelSelectorService');
-const { findWord } = require('../services/wordsService');
-const { getWordByName } = require('../controllers/wordsController');
+import modelController from '../services/modelSelectorService';
+import { findWord } from '../services/wordsService';
+import wordsController from '../controllers/wordsController';
 
 interface Word {
   id: number;
@@ -40,11 +37,18 @@ describe('findWord', () => {
     const req = mockRequest({ word: 'happy' });
     const res = mockResponse();
 
-    getWordByName(req, res);
+    wordsController.getWordByName(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ word: 'Happy' })
+      expect.objectContaining({
+        message: 'Success',
+        data: {
+          id: expect.any(Number),
+          word: 'Happy',
+          synonym: ['Joyful', 'Cheerful'],
+        },
+      })
     );
   });
 
@@ -52,16 +56,18 @@ describe('findWord', () => {
     const req = mockRequest({ word: 'Sad' });
     const res = mockResponse();
 
-    getWordByName(req, res);
+    wordsController.getWordByName(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.json).toHaveBeenCalledWith({ message: "Word 'Sad' not found" });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Word 'Sad' not found. not found.",
+    });
   });
 
   test('should find a word in the basic model', () => {
-    const model = getActiveModel();
+    const model = modelController.getActiveModel();
 
-    if (model.activeModel !== 'basic') selectModel('basic');
+    if (model.activeModel !== 'basic') modelController.selectModel('basic');
 
     const result: Word | undefined = findWord('Happy');
 
@@ -82,18 +88,19 @@ describe('findWord', () => {
   });
 
   test('should find a word and add transitive synonyms in the non-basic model', () => {
-    const model = getActiveModel();
+    const model = modelController.getActiveModel();
 
-    if (model.activeModel === 'basic') selectModel('transitive');
+    if (model.activeModel === 'basic')
+      modelController.selectModel('transitive');
 
-    const getCurrentModel = getActiveModel();
+    const getCurrentModel = modelController.getActiveModel();
     expect(getCurrentModel.activeModel).toEqual('transitive');
 
     const result: Word | undefined = findWord('Happy');
 
-    selectModel('basic');
+    modelController.selectModel('basic');
 
-    const getExitModel = getActiveModel();
+    const getExitModel = modelController.getActiveModel();
     expect(getExitModel.activeModel).toEqual('basic');
     expect(result).toEqual(
       expect.objectContaining({

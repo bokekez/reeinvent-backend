@@ -1,8 +1,5 @@
-const {
-  getAllWords,
-  findWordBySubstring,
-} = require('../services/wordsService');
-const { getWords } = require('../controllers/wordsController');
+import { getAllWords, findWordBySubstring } from '../services/wordsService';
+import wordsController from '../controllers/wordsController';
 
 interface Word {
   id: number;
@@ -32,12 +29,12 @@ describe('getWords', () => {
     const req = { query: { search: '' } };
     const res = mockResponse();
 
-    getWords(req, res);
+    wordsController.getWords(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(200);
 
     const responseData = res.json.mock.calls[0][0];
-    const wordExists = responseData.some(
+    const wordExists = responseData.data.some(
       (wordObj: { word: string }) => wordObj.word === 'Happy'
     );
 
@@ -48,12 +45,12 @@ describe('getWords', () => {
     const req = { query: { search: 'Happy' } };
     const res = mockResponse();
 
-    getWords(req, res);
+    wordsController.getWords(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(200);
 
     const responseData = res.json.mock.calls[0][0];
-    const wordExists = responseData.some(
+    const wordExists = responseData.data.some(
       (wordObj: { word: string }) => wordObj.word === 'Happy'
     );
 
@@ -64,12 +61,12 @@ describe('getWords', () => {
     const req = { query: { search: 'ppy' } };
     const res = mockResponse();
 
-    getWords(req, res);
+    wordsController.getWords(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(200);
 
     const responseData = res.json.mock.calls[0][0];
-    const wordExists = responseData.some(
+    const wordExists = responseData.data.some(
       (wordObj: { word: string }) => wordObj.word === 'Happy'
     );
 
@@ -80,12 +77,10 @@ describe('getWords', () => {
     const req = { query: { search: 'Sad' } };
     const res = mockResponse();
 
-    getWords(req, res);
+    wordsController.getWords(req as any, res as any);
 
     expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "No words found containing 'Sad'.",
-    });
+    expect(res.json).toHaveBeenCalledWith("No words found containing 'Sad'.");
   });
 
   test('get all words service returns all words', () => {

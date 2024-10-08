@@ -1,23 +1,33 @@
-const { doSynonymsExist, insertWord } = require('../services/wordsService');
-const { addWord } = require('../controllers/wordsController');
+import { doSynonymsExist, insertWord } from '../services/wordsService';
+import wordsController from '../controllers/wordsController';
+import { Request, Response } from 'express';
 
-interface Word {
-  id: number;
+interface WordRequestBody {
   word: string;
   synonym: string[];
 }
 
-describe('addWord', () => {
-  type MockResponse = {
-    status: jest.Mock;
-    json: jest.Mock;
-  };
+interface MockRequest extends Partial<Request> {
+  body: WordRequestBody;
+}
 
+interface MockResponse extends Partial<Response> {
+  status: jest.Mock;
+  json: jest.Mock;
+}
+
+describe('addWord', () => {
   const mockResponse = (): MockResponse => {
     const res = {} as MockResponse;
     res.status = jest.fn().mockReturnValue(res);
     res.json = jest.fn();
     return res;
+  };
+
+  const mockRequest = (body: WordRequestBody): MockRequest => {
+    return {
+      body,
+    } as MockRequest;
   };
 
   beforeEach(() => {
@@ -26,63 +36,68 @@ describe('addWord', () => {
   });
 
   test('add a new word', () => {
-    const req = { body: { word: 'newWord', synonym: ['Happy'] } };
+    const req = mockRequest({ word: 'newWord', synonym: ['Happy'] });
     const res = mockResponse();
 
-    addWord(req, res);
+    wordsController.addWord(req as Request, res as Response);
 
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ word: 'newWord' })
+      expect.objectContaining({
+        message: 'Success',
+        data: {
+          id: expect.any(Number),
+          word: 'newWord',
+          synonym: ['Happy'],
+        },
+      })
     );
   });
 
   test('add a new word that already exists', () => {
-    const req = { body: { word: 'Happy', synonym: ['Joyful'] } };
+    const req = mockRequest({ word: 'Happy', synonym: ['Joyful'] });
     const res = mockResponse();
 
-    addWord(req, res);
+    wordsController.addWord(req as Request, res as Response);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ message: "Word 'Happy' already exists" })
+      expect.objectContaining({ message: "Word 'Happy' already exists." })
     );
   });
 
   test('add a new word but no word passed', () => {
-    const req = { body: { word: '', synonym: ['Joyful'] } };
+    const req = mockRequest({ word: '', synonym: ['Joyful'] });
     const res = mockResponse();
 
-    addWord(req, res);
+    wordsController.addWord(req as Request, res as Response);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ message: 'Invalid input: word is required.' })
+      expect.objectContaining({ message: 'Invalid input: word is required..' })
     );
   });
 
   test('add a new word but synonym doesn not exist', () => {
-    const req = { body: { word: 'newWord', synonym: ['test'] } };
+    const req = mockRequest({ word: 'newWord', synonym: ['test'] });
     const res = mockResponse();
 
-    addWord(req, res);
+    wordsController.addWord(req as Request, res as Response);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ message: "Word 'newWord' already exists" })
+      expect.objectContaining({ message: "Word 'newWord' already exists." })
     );
   });
 
   test('check if synonyms exist as words', () => {
-    const synoymCheck = doSynonymsExist(['Happy', 'Joyful']);
-
-    expect(synoymCheck).toHaveLength(0);
+    const synonymCheck = doSynonymsExist(['Happy', 'Joyful']);
+    expect(synonymCheck).toHaveLength(0);
   });
 
   test('check if synonyms do not exist as words', () => {
-    const synoymCheck = doSynonymsExist(['Happy', 'test']);
-
-    expect(synoymCheck).toHaveLength(1);
+    const synonymCheck = doSynonymsExist(['Happy', 'test']);
+    expect(synonymCheck).toHaveLength(1);
   });
 
   test('check if word was added to word list', () => {

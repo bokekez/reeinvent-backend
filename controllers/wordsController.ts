@@ -65,9 +65,7 @@ const getWords = (req: RequestWithQuery, res: Response): any => {
     return res.status(200).json(successResponse(filteredWords));
   }
 
-  return res
-    .status(404)
-    .json(notFoundResponse(`No words found containing '${search}'.`));
+  return res.status(404).json(`No words found containing '${search}'.`);
 };
 
 const getWordByName = (req: RequestWithParams, res: Response): any => {
