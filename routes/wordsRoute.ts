@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import wordsController from '../controllers/wordsController';
+
 const router = express.Router();
-const wordsController = require('../controllers/words');
 
 router.get('/', wordsController.getWords);
 
@@ -12,4 +13,4 @@ router.put('/:word', wordsController.updateWord);
 
 router.delete('/:word', wordsController.removeWord);
 
-module.exports = router;
+export default router;

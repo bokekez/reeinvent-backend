@@ -1,59 +1,87 @@
-const { getActiveModel } = require('./modelSelectorService');
+import { ActiveModel } from './modelSelectorService';
+import modelSelectorService from './modelSelectorService';
 
-const getAllWords = () => {
-  const words = getActiveModel().words;
+interface Word {
+  id: number;
+  word: string;
+  synonym: string[];
+  transitive?: string[];
+}
+
+const getActiveModel = (): ActiveModel => {
+  return modelSelectorService.getActiveModel();
+};
+
+const getAllWords = (): Word[] => {
+  const words = getActiveModel().words as Word[];
   return words;
 };
 
-const findWord = (wordSearch) => {
+const findWord = (wordSearch: string): Word | undefined => {
   const wordsModel = getActiveModel();
   if (wordsModel.activeModel === 'basic') {
-    return wordsModel.words.find((element) =>
+    return wordsModel.words.find((element: Word) =>
       checkWords(element.word, wordSearch)
     );
   }
-  const word = wordsModel.words.find((element) =>
+  const word = wordsModel.words.find((element: Word) =>
     checkWords(element.word, wordSearch)
   );
-  const transitive = getTraslativeSynonyms(wordsModel.words, wordSearch);
+  const transitive = getTranslativeSynonyms(
+    wordsModel.words as Word[],
+    wordSearch
+  );
   if (!word) return;
-  word.transitive = transitive.filter(
+  (word as Word & { transitive?: string[] }).transitive = transitive.filter(
     (transSyn) => !word.synonym.includes(transSyn)
   );
   return word;
 };
 
-const doSynonymsExist = (synonyms) => {
+const doSynonymsExist = (synonyms: string[]): string[] => {
   const words = getAllWords();
   return synonyms.filter(
     (synonym) => !words.find((word) => checkWords(word.word, synonym))
   );
 };
 
-const insertWord = (word, synonyms) => {
+const insertWord = (word: string, synonyms: string[]): Word => {
   const wordsModel = getActiveModel();
-  const newWord = {
-    id: wordsModel.words.length + 1,
+  const newWord: Word = {
+    id: (wordsModel.words as Word[]).length + 1,
     word: word,
     synonym: synonyms,
   };
 
-  wordsModel.words.push(newWord);
-  addSyonoyms(word, synonyms, wordsModel.words);
+  (wordsModel.words as Word[]).push(newWord);
+  addSynonyms(word, synonyms, wordsModel.words as Word[]);
   return newWord;
 };
 
-const addSyonoyms = (word, synonyms, words) => {
+const addSynonyms = (word: string, synonyms: string[], words: Word[]): void => {
   synonyms.forEach((syn) => {
     const updateIndex = words.findIndex((element) =>
       checkWords(element.word, syn)
     );
+    if (updateIndex === -1) return sanitizeSynomys(syn, synonyms, word);
     if (words[updateIndex].synonym.includes(word)) return;
     words[updateIndex].synonym.push(word);
   });
 };
 
-const deleteWord = (word) => {
+const sanitizeSynomys = (
+  synonymToWord: string,
+  synonyms: string[],
+  word: string
+) => {
+  const newWordsSynoyms: string[] = synonyms.filter(
+    (el: string) => el !== synonymToWord
+  );
+  newWordsSynoyms.push(word);
+  insertWord(synonymToWord, newWordsSynoyms);
+};
+
+const deleteWord = (word: string): boolean => {
   const words = getAllWords();
   const wordIndex = words.findIndex((element) =>
     checkWords(element.word, word)
@@ -72,7 +100,7 @@ const deleteWord = (word) => {
   return true;
 };
 
-function editWord(word, newWord, newSynonyms) {
+const editWord = (word: string, newWord: string, newSynonyms: string[]) => {
   const words = getAllWords();
   const wordIndex = words.findIndex((element) =>
     checkWords(element.word, word)
@@ -107,7 +135,7 @@ function editWord(word, newWord, newSynonyms) {
       message: `Synonyms must exist as words, ${synonymWordCheck} are not words!`,
     };
 
-  if (words[wordIndex].synonym.length > newSynonyms.length) {
+  if (duplicateCheck && words[wordIndex].synonym.length > newSynonyms.length) {
     const wordToUpdate = duplicateCheck.synonym.filter(
       (syn) => !newSynonyms.includes(syn)
     );
@@ -121,7 +149,7 @@ function editWord(word, newWord, newSynonyms) {
   }
 
   if (words[wordIndex].synonym.length < newSynonyms.length) {
-    addSyonoyms(newWord, newSynonyms, words);
+    addSynonyms(newWord, newSynonyms, words);
   }
 
   words[wordIndex].word = newWord;
@@ -140,36 +168,38 @@ function editWord(word, newWord, newSynonyms) {
     message: `Word '${word}' updated to '${newWord}'.`,
     word: { word: newWord, synonym: newSynonyms },
   };
-}
+};
 
-const getTraslativeSynonyms = (words, wordSearch) => {
-  const translative = [];
+const getTranslativeSynonyms = (
+  words: Word[],
+  wordSearch: string
+): string[] => {
+  const translative: string[] = [];
   words.forEach((word) => {
     if (word.synonym.some((syn) => checkWords(syn, wordSearch))) {
       const findTranslatives = word.synonym.filter(
         (tran) => tran.toLowerCase() !== wordSearch.toLowerCase()
       );
       if (!findTranslatives.length) return;
-      translative.push(findTranslatives);
+      translative.push(...findTranslatives);
     }
   });
   return translative.flat();
 };
 
-function findWordBySubstring(substring) {
+const findWordBySubstring = (substring: string): Word[] => {
   const words = getAllWords();
   const lowerCaseSubstr = substring.toLowerCase();
   return words.filter((wordObj) =>
     wordObj.word.toLowerCase().includes(lowerCaseSubstr)
   );
-}
-
-const checkWords = (word, wordSearch) => {
-  if (word.toLowerCase() === wordSearch.toLowerCase()) return true;
-  return false;
 };
 
-module.exports = {
+const checkWords = (word: string, wordSearch: string): boolean => {
+  return word.toLowerCase() === wordSearch.toLowerCase();
+};
+
+export {
   getAllWords,
   findWord,
   insertWord,

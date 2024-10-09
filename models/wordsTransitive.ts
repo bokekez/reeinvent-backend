@@ -25,4 +25,4 @@ const wordsTransitive = [
   { id: 24, word: 'Tranquil', synonym: ['Peaceful'] },
 ];
 
-module.exports = wordsTransitive;
+export default wordsTransitive;
